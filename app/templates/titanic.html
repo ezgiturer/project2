@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Titanic Survival Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+        }
+
+        canvas {
+            max-width: 700px;
+            max-height: 500px;
+        }
+
+        .table-container {
+            width: 60%;
+            margin-top: 20px;
+            font-size: 0.8rem;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/titanic">Titanic</a>
+        <a href="https://github.com/ezgiturer" target="_blank">About</a>
+    </nav>
+
+    <h1>Titanic Survivors by Gender</h1>
+
+    <div class="container">
+        <canvas id="survivalChart"></canvas>
+
+        <div class="table-container">
+            <h2>Data Preview</h2>
+            {{ table | safe }}
+        </div>
+    </div>
+
+    <script>
+        const survivalData = {{ survival_data | tojson }};
+        const ctx = document.getElementById('survivalChart').getContext('2d');
+        const survivalChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Men', 'Women'],
+                datasets: [{
+                    label: 'Number of Survivors',
+                    data: survivalData,
+                    backgroundColor: ['#3498db', '#e74c3c'],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    title: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Survivor Count'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

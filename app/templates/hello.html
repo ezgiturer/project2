@@ -4,11 +4,18 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>My first dynamic Website</title>
+    <title>My First Dynamic Website</title>
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
 </head>
 
 <body>
+    <!-- Navigation Menu -->
+    <nav>
+        <a href="/">Home</a>
+       <a href="/titanic">Titanic</a>
+        <a href="https://github.com/ezgiturer">About</a>
+    </nav>
+
     <main>
         <h1>I have been seen {{ count }} times.</h1>
         <ul>
@@ -16,7 +23,17 @@
             <li>{{ i }}: Hello {{ name }}! </li>
             {% endfor %}
         </ul>
+        <!-- HWR Berlin Homepage Link -->
+        <p>Visit <a href="https://www.hwr-berlin.de">HWR Berlin</a> for more information.</p>
+
+        <!-- Image -->
+        <img src="https://img1.picmix.com/output/stamp/normal/1/7/6/8/2338671_56000.gif" alt="Cat" width="200">
     </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Ezgi Tuerer</p>
+    </footer>
 </body>
 
 </html>
